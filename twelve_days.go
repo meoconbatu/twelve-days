@@ -31,20 +31,20 @@ func Ordinal(number int) string {
 func SpellOut(number int) string {
 	return number2Word[number-1]
 }
-func Verse(index int) string {
-	result := "On the"
-	result += " " + Ordinal(index)
-	result += " day of Christmas my true love gave to me"
+func Gift(index int) string {
+	result := ""
 	for i := index; i > 0; i-- {
-		if i == 1 && index != 1 {
-			result += ", and "
-		} else {
-			result += ", "
-		}
-		result += SpellOut(givenThings[i-1].quantity) + " " + givenThings[i-1].thing
-	}
-	result += " in a Pear Tree."
+                if i == 1 && index != 1 {
+                        result += ", and "
+                } else {
+                        result += ", "
+                }
+                result += SpellOut(givenThings[i-1].quantity) + " " + givenThings[i-1].thing
+        }
 	return result
+}
+func Verse(index int) string {
+	return "On the " + Ordinal(index) + " day of Christmas my true love gave to me" + Gift(index) + " in a Pear Tree."
 }
 func Song() string {
 	var result string
