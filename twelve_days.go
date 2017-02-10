@@ -4,7 +4,7 @@ const testVersion = 1
 
 type givenThing struct {
 	quantity int
-	thing	string
+	thing    string
 }
 
 var givenThings = []givenThing{
@@ -21,30 +21,14 @@ var givenThings = []givenThing{
 	{11, "Pipers Piping"},
 	{12, "Drummers Drumming"},
 }
-var  number2Word = [12]string{"a", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"} 
-func Ordinal (number int) string {
-	var result string
-	switch number {
-		case 1:
-			result = "first"
-		case 2:
-			result = "second"
-		case 3:
-                        result = "third"
-		case 5:
-                        result = "fifth"
-                case 8:
-                        result = "eighth"
-                case 9:
-                        result = "ninth"
-                case 12:
-                        result = "twelfth"
-		default:
-			result = SpellOut(number) + "th"
-	}
-	return result
+
+var number2Word = []string{"a", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"}
+var ordinal = []string{"first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth", "tenth", "eleventh", "twelfth"}
+
+func Ordinal(number int) string {
+	return ordinal[number-1]
 }
-func SpellOut (number int) string {
+func SpellOut(number int) string {
 	return number2Word[number-1]
 }
 func Verse(index int) string {
@@ -56,17 +40,17 @@ func Verse(index int) string {
 			result += ", and "
 		} else {
 			result += ", "
-			}
-		
+		}
 		result += SpellOut(givenThings[i-1].quantity) + " " + givenThings[i-1].thing
-	} 
+	}
 	result += " in a Pear Tree."
 	return result
 }
 func Song() string {
 	var result string
-	for i:= 1; i<=12; i++ {
-		result += Verse(i) + "\n"			
+	numberOfVerse := 12
+	for i := 1; i <= numberOfVerse; i++ {
+		result += Verse(i) + "\n"
 	}
-	return result		
+	return result
 }
